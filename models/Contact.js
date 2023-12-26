@@ -4,6 +4,9 @@ import { handleSaveError, addUpdateSettings } from "./hooks.js";
 
 const contactSchema = new Schema(
   {
+    avatarContactURL: {
+      type: String,
+    },
     name: {
       type: String,
       required: [true, "Set name for contact"],
@@ -32,6 +35,7 @@ export const contactAddSchema = Joi.object({
   email: Joi.string().required(),
   phone: Joi.string().required(),
   favorite: Joi.boolean(),
+  avatarContactURL: Joi.string(),
 });
 
 export const contactUpdateSchema = Joi.object({
@@ -39,6 +43,11 @@ export const contactUpdateSchema = Joi.object({
   email: Joi.string(),
   phone: Joi.string(),
   favorite: Joi.boolean(),
+  avatarContactURL: Joi.string(),
+});
+
+export const contactAvatarSchema = Joi.object({
+  avatarContactURL: Joi.string(),
 });
 
 contactSchema.post("save", handleSaveError);
